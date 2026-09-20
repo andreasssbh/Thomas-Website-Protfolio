@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thomas Cavacas — Kinésithérapeute</title>
+<meta name="description" content="Thomas Cavacas, kinésithérapeute in Saint-Tropez. In-clinic and at-home physiotherapy sessions — rehabilitation, sports recovery, and respiratory therapy.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --black:#0b0b0c;
+    --near-black:#141416;
+    --charcoal:#26262a;
+    --gray-700:#54545a;
+    --gray-500:#8a8a90;
+    --gray-300:#c9c9cd;
+    --gray-100:#ececee;
+    --off-white:#f6f6f4;
+    --white:#ffffff;
+    --line:rgba(255,255,255,0.14);
+    --line-dark:rgba(0,0,0,0.1);
+    --max:1180px;
+    --pad:clamp(1.5rem, 4vw, 4rem);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--off-white);
+    color:var(--near-black);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:500;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--gray-700);
+  }
+
+  .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+  section{position:relative;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s ease, transform 0.8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:1.3rem 0;
+    transition:background 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(246,246,244,0.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-dark);
+    padding:0.9rem 0;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces',serif;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .logo span{color:var(--gray-500);}
+  nav ul{list-style:none;display:flex;gap:2.2rem;margin:0;padding:0;}
+  nav a{
+    font-size:0.86rem;
+    letter-spacing:0.02em;
+    color:var(--gray-700);
+    transition:color 0.2s ease;
+    position:relative;
+  }
+  nav a:hover{color:var(--black);}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    border:1px solid var(--near-black);
+    padding:0.6rem 1.3rem;
+    border-radius:999px;
+    font-size:0.82rem;
+    letter-spacing:0.02em;
+    transition:background 0.25s ease,color 0.25s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--near-black);color:var(--white);}
+  .nav-links{display:flex;align-items:center;gap:2.2rem;}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:0.4rem;}
+  .menu-btn span{display:block;width:22px;height:1.5px;background:var(--near-black);margin:5px 0;transition:0.3s;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:6rem;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% 8%, rgba(255,255,255,0.5), transparent 60%),
+      linear-gradient(180deg,#f6f6f4 0%, #eeeeec 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:clamp(2rem,6vw,5rem);
+    align-items:center;
+    width:100%;
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:0.6rem;
+    margin-bottom:1.6rem;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--near-black);display:inline-block;}
+  h1.hero-title{
+    font-size:clamp(2.6rem, 5.4vw, 4.6rem);
+    margin-bottom:1.4rem;
+  }
+  h1.hero-title em{font-style:italic;color:var(--gray-700);}
+  .hero-sub{
+    font-size:clamp(1.05rem,1.6vw,1.25rem);
+    color:var(--gray-700);
+    max-width:34rem;
+    margin-bottom:2.3rem;
+    font-weight:300;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.8rem;}
+  .btn{
+    display:inline-flex;align-items:center;gap:0.6rem;
+    padding:0.95rem 1.9rem;
+    border-radius:999px;
+    font-size:0.92rem;
+    letter-spacing:0.01em;
+    font-weight:500;
+    transition:all 0.25s ease;
+    border:1px solid var(--near-black);
+  }
+  .btn-solid{background:var(--near-black);color:var(--white);}
+  .btn-solid:hover{background:transparent;color:var(--near-black);}
+  .btn-ghost{background:transparent;color:var(--near-black);}
+  .btn-ghost:hover{background:var(--near-black);color:var(--white);}
+  .btn svg{width:15px;height:15px;}
+
+  .hero-meta{display:flex;gap:2.4rem;flex-wrap:wrap;}
+  .hero-meta div{border-left:1px solid var(--line-dark);padding-left:1rem;}
+  .hero-meta .num{font-family:'Fraunces',serif;font-size:1.6rem;display:block;}
+  .hero-meta .label{font-size:0.76rem;color:var(--gray-700);text-transform:uppercase;letter-spacing:0.08em;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:6px;
+    overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, #dcdcda 0px, #dcdcda 1px, #e9e9e7 1px, #e9e9e7 26px),
+      #e4e4e2;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line-dark);
+  }
+  .hero-visual .mono{
+    font-family:'Fraunces',serif;
+    font-size:5.5rem;
+    color:rgba(20,20,22,0.16);
+    font-weight:400;
+  }
+  .visual-tag{
+    position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;
+    background:rgba(11,11,12,0.72);
+    color:var(--white);
+    backdrop-filter:blur(6px);
+    padding:0.7rem 1rem;
+    border-radius:4px;
+    font-size:0.74rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- section heading ---------- */
+  .section-head{max-width:40rem;margin-bottom:3.2rem;}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-top:0.9rem;}
+  .section-head p{color:var(--gray-700);margin-top:1rem;font-size:1.02rem;font-weight:300;}
+
+  section.pad{padding:clamp(4.5rem,8vw,7.5rem) 0;}
+  .divider{height:1px;background:var(--line-dark);}
+
+  /* ---------- about ---------- */
+  .about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(2.5rem,6vw,5rem);align-items:start;}
+  .about-photo{
+    aspect-ratio:3/4;
+    border-radius:6px;
+    background:repeating-linear-gradient(135deg,#eee 0,#eee 1px,#f7f7f6 1px,#f7f7f6 26px);
+    border:1px solid var(--line-dark);
+    display:flex;align-items:center;justify-content:center;
+    position:sticky;top:7rem;
+  }
+  .about-photo .mono{font-family:'Fraunces',serif;font-size:4rem;color:rgba(20,20,22,0.14);}
+  .about-copy p{font-size:1.08rem;color:var(--charcoal);font-weight:300;margin:0 0 1.3rem;}
+  .about-copy p.lead{font-size:1.28rem;font-family:'Fraunces',serif;font-weight:400;color:var(--near-black);line-height:1.45;}
+  .facts{
+    margin-top:2.4rem;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.4rem 2rem;
+    border-top:1px solid var(--line-dark);
+    padding-top:2rem;
+  }
+  .fact-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-500);margin-bottom:0.35rem;}
+  .fact-value{font-size:1rem;color:var(--near-black);}
+  .lang-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.3rem;}
+  .lang-chip{
+    border:1px solid var(--line-dark);
+    padding:0.35rem 0.85rem;
+    border-radius:999px;
+    font-size:0.82rem;
+    color:var(--charcoal);
+  }
+
+  /* ---------- services ---------- */
+  .services{background:var(--off-white);}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);}
+  .service-card{
+    background:var(--off-white);
+    padding:2.4rem 2rem;
+    transition:background 0.3s ease;
+  }
+  .service-card:hover{background:var(--white);}
+  .service-num{font-family:'Fraunces',serif;font-size:0.9rem;color:var(--gray-500);margin-bottom:1.6rem;display:block;}
+  .service-card h3{font-size:1.25rem;margin-bottom:0.8rem;font-weight:500;}
+  .service-card p{font-size:0.93rem;color:var(--gray-700);font-weight:300;margin:0;}
+
+  /* ---------- trust ---------- */
+  .trust{background:var(--near-black);color:var(--white);}
+  .trust .eyebrow{color:var(--gray-300);}
+  .trust .section-head p{color:var(--gray-300);}
+  .trust-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.1rem;
+  }
+  .trust-tile{
+    aspect-ratio:1/1;
+    border-radius:6px;
+    border:1px dashed rgba(255,255,255,0.28);
+    background:rgba(255,255,255,0.03);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0.6rem;
+    color:rgba(255,255,255,0.4);
+    text-align:center;
+    padding:1rem;
+  }
+  .trust-tile svg{width:26px;height:26px;opacity:0.6;}
+  .trust-tile span{font-size:0.72rem;letter-spacing:0.04em;text-transform:uppercase;}
+  .trust-note{
+    margin-top:2.2rem;
+    font-size:0.85rem;
+    color:var(--gray-500);
+    font-style:italic;
+  }
+
+  /* ---------- experience ---------- */
+  .experience{background:var(--white);}
+  .timeline{border-top:1px solid var(--line-dark);}
+  .t-row{
+    display:grid;
+    grid-template-columns:11rem 1fr;
+    gap:2rem;
+    padding:2.1rem 0;
+    border-bottom:1px solid var(--line-dark);
+  }
+  .t-date{font-size:0.86rem;color:var(--gray-500);letter-spacing:0.02em;padding-top:0.2rem;}
+  .t-role{font-size:1.15rem;font-family:'Fraunces',serif;margin-bottom:0.35rem;}
+  .t-place{font-size:0.88rem;color:var(--gray-700);margin-bottom:0.6rem;}
+  .t-desc{font-size:0.94rem;color:var(--charcoal);font-weight:300;max-width:38rem;}
+  .t-tag{
+    display:inline-block;margin-top:0.7rem;
+    font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--gray-500);border:1px solid var(--line-dark);border-radius:999px;padding:0.25rem 0.7rem;
+  }
+
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
+  .edu-card{border:1px solid var(--line-dark);border-radius:6px;padding:1.8rem;}
+  .edu-card .fact-label{margin-bottom:0.6rem;}
+  .edu-card h4{font-size:1.15rem;margin-bottom:0.3rem;}
+  .edu-card .t-place{margin-bottom:0;}
+
+  /* ---------- gallery ---------- */
+  .gallery{background:var(--off-white);}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:11rem;
+    gap:0.8rem;
+  }
+  .g-tile{
+    border-radius:6px;
+    background:repeating-linear-gradient(135deg,#e2e2e0 0,#e2e2e0 1px,#ececea 1px,#ececea 26px);
+    border:1px solid var(--line-dark);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gray-500);
+  }
+  .g-tile svg{width:22px;height:22px;opacity:0.55;}
+  .g-tile.big{grid-column:span 2;grid-row:span 2;}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--near-black);color:var(--white);}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:clamp(2.5rem,6vw,5rem);
+    align-items:end;
+  }
+  .contact h2{font-size:clamp(2.1rem,4.6vw,3.6rem);color:var(--white);}
+  .contact .eyebrow{color:var(--gray-300);}
+  .contact-lead{color:var(--gray-300);font-weight:300;font-size:1.05rem;margin-top:1.2rem;max-width:32rem;}
+  .contact-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+  .contact-item{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.3rem 0;
+    border-bottom:1px solid var(--line);
+    transition:padding-left 0.25s ease;
+  }
+  .contact-item:hover{padding-left:0.5rem;}
+  .contact-item .label{font-size:0.74rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-500);}
+  .contact-item .value{font-family:'Fraunces',serif;font-size:1.15rem;}
+  .contact-item svg{width:16px;height:16px;color:var(--gray-500);}
+
+  footer{
+    background:var(--near-black);
+    color:var(--gray-500);
+    padding:1.6rem 0 2.4rem;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:0.8rem;
+    flex-wrap:wrap;
+    gap:0.8rem;
+  }
+  footer a{color:var(--gray-300);}
+  footer a:hover{color:var(--white);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    nav ul{display:none;}
+    .menu-btn{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;aspect-ratio:16/10;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-photo{position:static;aspect-ratio:16/10;}
+    .service-grid{grid-template-columns:1fr 1fr;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);}
+    .t-row{grid-template-columns:1fr;gap:0.4rem;}
+    .edu-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .g-tile.big{grid-column:span 2;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .service-grid{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:1fr 1fr;}
+    .hero-meta{gap:1.4rem;}
+    .facts{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">Thomas Cavacas <span>· Kiné</span></a>
+    <div class="nav-links">
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#trust">Trust</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="nav-cta">Book a session</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileNav" style="display:none;position:fixed;inset:0;background:var(--off-white);z-index:99;padding:7rem 2rem 2rem;">
+  <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.6rem;font-family:'Fraunces',serif;font-size:1.6rem;">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#trust">Trust</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          <span class="eyebrow">Kinésithérapeute · Saint-Tropez</span>
+        </div>
+        <h1 class="hero-title">Movement,<br>restored with<br><em>care and precision.</em></h1>
+        <p class="hero-sub">Thomas Cavacas is a physiotherapist based in Saint-Tropez, treating patients in clinic and at home — from post-operative recovery to sports performance and respiratory rehabilitation.</p>
+        <div class="hero-actions">
+          <a href="tel:+33766000951" class="btn btn-solid">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Thomas
+          </a>
+          <a href="#contact" class="btn btn-ghost">
+            Get in touch
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="hero-meta">
+          <div>
+            <span class="num">6+</span>
+            <span class="label">Years in training &amp; practice</span>
+          </div>
+          <div>
+            <span class="num">3</span>
+            <span class="label">Languages spoken</span>
+          </div>
+          <div>
+            <span class="num">2</span>
+            <span class="label">Countries of clinical experience</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <span class="mono">TC</span>
+        <div class="visual-tag">Portrait — add photo here</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about pad" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo reveal">
+        <span class="mono">TC</span>
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow reveal">About Thomas</div>
+        <h2 class="reveal" style="margin:0.9rem 0 1.6rem;font-size:clamp(1.9rem,3.2vw,2.6rem);">A physiotherapist devoted to precise, personal care.</h2>
+        <p class="lead reveal">Originally trained between France, Spain and the United States, Thomas built his practice around one idea: recovery works best when it's personal.</p>
+        <p class="reveal">Thomas is a fully qualified kinésithérapeute (physiotherapist), a graduate of Universidad Europea in Madrid, where he completed his degree in physiotherapy between 2018 and 2024. His clinical training took him through hospitals and clinics across Spain and France — working in respiratory rehabilitation, neurological recovery, and post-operative care.</p>
+        <p class="reveal">Today, Thomas practices as an independent physiotherapist (kinésithérapeute libéral) in Saint-Tropez, seeing patients both in clinic and at home. Whether it's a professional athlete recovering from injury, a post-surgery patient regaining mobility, or someone simply looking to move better, he brings the same attention to detail to every session.</p>
+        <div class="facts">
+          <div>
+            <div class="fact-label">Based in</div>
+            <div class="fact-value">Saint-Tropez, France</div>
+          </div>
+          <div>
+            <div class="fact-label">Practice</div>
+            <div class="fact-value">In-clinic &amp; home visits</div>
+          </div>
+          <div>
+            <div class="fact-label">Education</div>
+            <div class="fact-value">Universidad Europea, Madrid</div>
+          </div>
+          <div>
+            <div class="fact-label">Languages</div>
+            <div class="lang-row">
+              <span class="lang-chip">English</span>
+              <span class="lang-chip">French</span>
+              <span class="lang-chip">Spanish</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- SERVICES -->
+  <section class="services pad" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Services</div>
+        <h2>Care built around how you actually live.</h2>
+        <p>Every treatment plan is tailored to the person in front of him — not a generic protocol. In clinic or at home, the approach stays the same: precise, attentive, and results-driven.</p>
+      </div>
+      <div class="service-grid reveal">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Orthopedic &amp; Musculoskeletal</h3>
+          <p>Rehabilitation for joint, muscle and tendon injuries — from sprains and strains to post-fracture recovery.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>Post-Operative Recovery</h3>
+          <p>Structured, progressive rehabilitation after surgery, focused on restoring mobility and strength safely.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>Respiratory Therapy</h3>
+          <p>Cardiorespiratory rehabilitation and airway clearance techniques for respiratory conditions and recovery.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3>Neurological Rehabilitation</h3>
+          <p>Support for patients recovering from stroke, spinal cord injury, and other neurological conditions.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <h3>Sports Recovery &amp; Performance</h3>
+          <p>Injury prevention, recovery and reconditioning programs built for athletes and active lifestyles.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">06</span>
+          <h3>At-Home Visits</h3>
+          <p>Full sessions brought directly to you — ideal for patients with limited mobility or a packed schedule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust pad" id="trust">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Trusted by</div>
+        <h2>People who put their recovery in his hands.</h2>
+        <p>Over the years, Thomas has treated athletes, executives, and families who return to him for one reason: consistent, careful results.</p>
+      </div>
+      <div class="trust-grid reveal">
+        <div class="trust-tile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add photo</span>
+        </div>
+        <div class="trust-tile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add photo</span>
+        </div>
+        <div class="trust-tile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add photo</span>
+        </div>
+        <div class="trust-tile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add photo</span>
+        </div>
+        <div class="trust-tile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add photo</span>
+        </div>
+        <div class="trust-tile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add photo</span>
+        </div>
+      </div>
+      <p class="trust-note reveal">— Photos to be added.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience pad" id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Experience</div>
+        <h2>A clinical background across two countries.</h2>
+        <p>Thomas's training spans hospitals and specialty clinics in France and Spain, covering respiratory care, neurology, and general rehabilitation.</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="t-row">
+          <div class="t-date">Mar 2025</div>
+          <div>
+            <div class="t-role">Kinésithérapeute</div>
+            <div class="t-place">Hôpital Renée Sabran — France</div>
+            <div class="t-desc">Cardiorespiratory rehabilitation, including respiratory kinesitherapy and effort reconditioning techniques.</div>
+            <span class="t-tag">Respiratory therapy</span>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="t-date">Feb 2025</div>
+          <div>
+            <div class="t-role">Kinésithérapeute</div>
+            <div class="t-place">Hyères, Provence-Alpes-Côte d'Azur, France</div>
+            <div class="t-desc">Rehabilitation for post-stroke patients, spinal cord injuries, and other neurological pathologies.</div>
+            <span class="t-tag">Neurological rehab</span>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="t-date">2024 – Present</div>
+          <div>
+            <div class="t-role">Kinésithérapeute — locum &amp; private practice</div>
+            <div class="t-place">Saint-Barthélemy &amp; Saint-Tropez, France</div>
+            <div class="t-desc">Clinical placements including OKS Saint-Barth, building toward independent practice now based in Saint-Tropez.</div>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="t-date">Jan – Feb 2023</div>
+          <div>
+            <div class="t-role">Kinésithérapeute — Internship</div>
+            <div class="t-place">Clínica Sanarte, Arroyomolinos, Madrid, Spain</div>
+            <div class="t-desc">Respiratory therapy alongside the clinic's physiotherapy team.</div>
+            <span class="t-tag">Respiratory therapy</span>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="t-date">Sep 2022 – Jan 2023</div>
+          <div>
+            <div class="t-role">Kinésithérapeute — Internship</div>
+            <div class="t-place">Centro de Especialidades Coronel de Palma, Móstoles, Madrid, Spain</div>
+            <div class="t-desc">General physiotherapy rotation within a specialty outpatient center.</div>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="t-date">Oct – Dec 2021</div>
+          <div>
+            <div class="t-role">Kinésithérapeute — Internship</div>
+            <div class="t-place">Fisioterapia Albufera Vallecas, Madrid, Spain</div>
+            <div class="t-desc">Outpatient musculoskeletal rehabilitation.</div>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="t-date">Oct 2021</div>
+          <div>
+            <div class="t-role">Kinésithérapeute — Internship</div>
+            <div class="t-place">Hospital Fundación Instituto San José, Madrid, Spain</div>
+            <div class="t-desc">Clinical rotation in neurology.</div>
+            <span class="t-tag">Neurology</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-grid reveal">
+        <div class="edu-card">
+          <div class="fact-label">Education</div>
+          <h4>Universidad Europea, Madrid</h4>
+          <div class="t-place">Physiotherapy degree · 2018 – 2024</div>
+        </div>
+        <div class="edu-card">
+          <div class="fact-label">Education</div>
+          <h4>Montverde Academy, Florida (USA)</h4>
+          <div class="t-place">Baccalauréat · 2015 – 2018 · Varsity swim team</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery pad" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Gallery</div>
+        <h2>A look at the practice.</h2>
+        <p>Photos of the clinic, sessions, and Thomas at work will live here.</p>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="g-tile big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <div class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <div class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <div class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <div class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <div class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact pad" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow reveal">Contact</div>
+        <h2 class="reveal" style="margin-top:0.9rem;">Let's get you moving again.</h2>
+        <p class="contact-lead reveal">In clinic in Saint-Tropez, or at your home. Reach out directly — Thomas responds personally.</p>
+      </div>
+      <div class="contact-list reveal">
+        <a href="tel:+33766000951" class="contact-item">
+          <div>
+            <div class="label">Phone</div>
+            <div class="value">07 66 00 09 51</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="mailto:thomascavacas@gmail.com" class="contact-item">
+          <div>
+            <div class="label">Email</div>
+            <div class="value">thomascavacas@gmail.com</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://www.instagram.com/thomasssbh/" target="_blank" rel="noopener" class="contact-item">
+          <div>
+            <div class="label">Instagram</div>
+            <div class="value">@thomasssbh</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/thomas-cavacas-1b388a261/" target="_blank" rel="noopener" class="contact-item">
+          <div>
+            <div class="label">LinkedIn</div>
+            <div class="value">Thomas Cavacas</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+      <span>© <span id="year"></span> Thomas Cavacas. All rights reserved.</span>
+      <span>
+        <a href="mailto:thomascavacas@gmail.com">Email</a> ·
+        <a href="https://www.instagram.com/thomasssbh/" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="https://www.linkedin.com/in/thomas-cavacas-1b388a261/" target="_blank" rel="noopener">LinkedIn</a>
+      </span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile nav
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  let navOpen = false;
+  menuBtn.addEventListener('click', () => {
+    navOpen = !navOpen;
+    mobileNav.style.display = navOpen ? 'block' : 'none';
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navOpen = false;
+      mobileNav.style.display = 'none';
+    });
+  });
+
+  // reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
